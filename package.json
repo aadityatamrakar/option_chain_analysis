@@ -1,0 +1,16 @@
+{
+  "name": "option_chain_gui",
+  "version": "1.0.0",
+  "description": "Option Chain Analysis in realtime.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "aaditya tamrakar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  }
+}
