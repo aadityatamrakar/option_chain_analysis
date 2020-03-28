@@ -16,14 +16,14 @@ Here, I am checking the price change and OI change and figuring out what is happ
 
 | Price Change | OI Change | Option Analysis | TREND |
 |--|--|--|--|
-| Positive | Positive | Long Liquidation | BULLISH |
-| Positive | Negative | Short Buildup | BULLISH |
-| Negative | Positive | Short Covering | BEARISH |
-| Negative | Negative | Long Buildup | BEARISH |
+| Positive | Positive | Long Buildup | BULLISH |
+| Negative | Positive | Short Buildup | BEARISH |
+| Positive | Negative | Short Covering | BULLISH |
+| Negative | Negative | Long Liquidation | BEARISH |
 
 Below table can give action plan for particular trend.
 
-| TREND | CALL Option | PUT Option |
+| NIFTY TREND | CALL Option | PUT Option |
 |--|--|--|
 | BULLISH | BUY | SELL |
 | BEARISH | SELL | BUY |
