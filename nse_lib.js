@@ -9,7 +9,7 @@ function getOptionChain() {
         symbol: 'NIFTY'
       },
       headers: {
-        referer: 'https://www.nseindia.com/get-quotes/derivatives?symbol=NIFTY',
+        referer: 'https://www.nseindia.com/get-quotes/derivatives?symbol=NIFTY&identifier=OPTIDXNIFTY01-04-2020PE8000.00',
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'same-origin',
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36',
