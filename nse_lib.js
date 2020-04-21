@@ -19,7 +19,6 @@ function getOptionChain() {
       keepAlive: true,
       json: true,
       gzip: true,
-      // proxy: "http://Selvitsswat:K9q3MrN@191.101.163.38:45785"
     };
 
     function callback(error, response, body) {
