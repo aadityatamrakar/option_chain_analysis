@@ -8,7 +8,7 @@ app.use(express.static('public'))
 app.get('/', (req, res) => res.redirect('/index.html'));
 app.get('/chain', async (req, res) => {
     try{
-        let resp = await option_chain();
+        let resp = await option_chain('NIFTY'); // can enter NIFTY / BANKNIFTY
         res.send(resp);
     }catch(err){
         res.status(500).send(err);
