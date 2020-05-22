@@ -1,34 +1,48 @@
-var request = require('request');
+const {
+  exec,
+  spawn
+} = require('child_process');
 
-function getOptionChain() {
-  return new Promise((resolve, reject) => {
-    var options = {
-      method: 'GET',
-      url: 'https://www.nseindia.com/api/option-chain-indices',
-      qs: {
-        symbol: 'NIFTY'
-      },
-      headers: {
-        referer: 'https://www.nseindia.com/get-quotes/derivatives?symbol=NIFTY&identifier=OPTIDXNIFTY01-04-2020PE8000.00',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-origin',
-        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36',
-        // 'Accept-Encoding': 'gzip, deflate, br',
-        // 'Accept-Language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6,mr;q=0.5',
-      },
-      keepAlive: true,
-      json: true,
-      gzip: true,
-    };
-
-    function callback(error, response, body) {
-      if (error) console.log(error), reject(error);
-      resolve(body);
-    }
-
-    request(options, callback);
+function execute(command, callback) {
+  exec(command, {
+    maxBuffer: 1024 * 1000 * 10
+  }, function (error, stdout, stderr) {
+    callback(stdout);
   });
+};
+
+function isJson(text) {
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    return false;
+  }
 }
 
+function getOptionChain(instrument) {
+  return new Promise((resolve, reject) => {
+    execute(`curl 'https://www.nseindia.com/api/option-chain-indices?symbol=${instrument}' \
+    -H 'authority: www.nseindia.com' \
+    -H 'cache-control: max-age=0' \
+    -H 'dnt: 1' \
+    -H 'upgrade-insecure-requests: 1' \
+    -H 'user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1' \
+    -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+    -H 'sec-fetch-site: none' \
+    -H 'sec-fetch-mode: navigate' \
+    -H 'sec-fetch-user: ?1' \
+    -H 'sec-fetch-dest: document' \
+    -H 'accept-language: en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6,mr;q=0.5' \
+    --compressed`, function (resp) {
+      let isValidData = isJson(resp);
+      if (isValidData) {
+        resolve(isValidData);
+      } else {
+        resolve();
+      }
+    });
+
+  });
+}
 
 module.exports = getOptionChain;
