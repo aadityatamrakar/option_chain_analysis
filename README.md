@@ -6,7 +6,7 @@ You can also select expiry date, the data will be filtered and shown for that ex
 
 ## Data Accuracy
 
-The data is being fetched in realtime when a user visits the webpage via server. The data is accurate and unmodified version of NSE option chain. 
+The data is being fetched in realtime when a user visits the webpage via server. The data is accurate and unmodified version of NSE option chain. I have used CURL for scrapping option chain data which I found was working, NodeJs Request and Native HTTPs library was not working. 
 
 ## Option Analysis
 
