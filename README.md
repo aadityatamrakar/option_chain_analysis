@@ -4,6 +4,10 @@ I wanted to quickly understand the market scenerio, so for I have developed this
 
 You can also select expiry date, the data will be filtered and shown for that expiry only.
 
+## Update 30 Aug 2020
+
+NSE India upgraded their API security. I have fixed the code in private repository. If your project is dependent on this library, I can give the code at cost. Email me: aaditya.span@gmail.com for more details.
+
 ## Data Accuracy
 
 The data is being fetched in realtime when a user visits the webpage via server. The data is accurate and unmodified version of NSE option chain. I have used CURL for scrapping option chain data which I found was working, NodeJs Request and Native HTTPs library was not working. 
