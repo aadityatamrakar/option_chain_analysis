@@ -6,7 +6,7 @@ You can also select expiry date, the data will be filtered and shown for that ex
 
 ## Update 30 Aug 2020
 
-NSE India upgraded their API security. I have fixed the code in private repository. If your project is dependent on this library, I can give the code at cost. Email me: vits.swat@gmail.com for more details.
+NSE India upgraded their API security. I have fixed the code in private repository. If your project is dependent on this library, I can give the code at cost.
 
 ## Data Accuracy
 
