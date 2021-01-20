@@ -4,6 +4,10 @@ I wanted to quickly understand the market scenerio, so for I have developed this
 
 You can also select expiry date, the data will be filtered and shown for that expiry only.
 
+## Update 20 Jan 2021 (FINNIFTY Instrument Chain)
+
+You can update app.js file. In place of NIFTY put FINNIFTY and it will show FINNIFTY Chain and analysis.
+
 ## Update 30 Aug 2020 (This is also working)
 
 NSE India upgraded their API security. I have fixed the code in private repository. If your project is dependent on this library, I can give the code at cost.
