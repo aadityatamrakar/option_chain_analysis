@@ -19,21 +19,34 @@ function isJson(text) {
   }
 }
 
+function loadCookies() {
+  return new Promise((resolve, reject) => {
+    execute(`curl 'https://www.nseindia.com/' \
+    -H 'authority: www.nseindia.com' \
+    -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+    -H 'accept-encoding: gzip, deflate, br' \
+    -H 'accept-language: en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6,mr;q=0.5' \
+    -H 'cache-control: no-cache' \
+    -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36' \
+    --compressed --silent --output /dev/null --cookie-jar cookie.txt`, function (resp) {
+      // console.log(resp);
+      resolve();
+    });
+  });
+}
+
 function getOptionChain(instrument) {
   return new Promise((resolve, reject) => {
     execute(`curl 'https://www.nseindia.com/api/option-chain-indices?symbol=${instrument}' \
-    -H 'authority: www.nseindia.com' \
-    -H 'cache-control: max-age=0' \
-    -H 'dnt: 1' \
-    -H 'upgrade-insecure-requests: 1' \
-    -H 'user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1' \
-    -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
-    -H 'sec-fetch-site: none' \
-    -H 'sec-fetch-mode: navigate' \
-    -H 'sec-fetch-user: ?1' \
-    -H 'sec-fetch-dest: document' \
-    -H 'accept-language: en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6,mr;q=0.5' \
-    --compressed`, function (resp) {
+      -H 'authority: www.nseindia.com' \
+      -H 'dnt: 1' \
+      -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+      -H 'accept-encoding: gzip, deflate, br' \
+      -H 'accept-language: en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6,mr;q=0.5' \
+      -H 'cache-control: no-cache' \
+      -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36' \
+      --compressed --cookie cookie.txt --cookie-jar cookie.txt`, function (resp) {
+      // console.log(resp);
       let isValidData = isJson(resp);
       if (isValidData) {
         resolve(isValidData);
@@ -45,4 +58,4 @@ function getOptionChain(instrument) {
   });
 }
 
-module.exports = getOptionChain;
+module.exports = {getOptionChain, loadCookies};
